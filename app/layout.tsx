@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ChakraProvider, Box, Center, Link } from "@chakra-ui/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,14 +21,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session,
 }: Readonly<{
   children: React.ReactNode;
+  session: any;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+    <html lang="jp">
+      <ChakraProvider>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <Box bgColor={"gray.700"} color={"white"}>
+            <Center>
+              <Link href="/">Nextjs練習記</Link>
+            </Center>
+          </Box>
+          {children}
+        </body>
+      </ChakraProvider>
     </html>
   );
 }
